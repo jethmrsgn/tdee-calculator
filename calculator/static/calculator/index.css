@@ -1,21 +1,13 @@
-body {
-	font-family: Arial, sans-serif;
-	background-color: #f4f4f4;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-	margin: 0;
-}
 .container {
 	background: white;
 	padding: 15px;
 	border-radius: 10px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	width:300px;
+	width:400px;
 	text-align: center;
+	margin-top: 100px;
 }
-h1 {
+.container h2 {
 	margin-bottom: 20px;
 }
 label {
@@ -29,6 +21,7 @@ input {
 	margin-bottom: 10px;
 	border: 1px solid #ccc;
 	border-radius: 25px;
+	text-align: center;
 }
 select, button {
 	width: 100%;
@@ -36,6 +29,7 @@ select, button {
 	margin-bottom: 10px;
 	border: 1px solid #ccc;
 	border-radius: 25px;
+	text-align: center;
 }
 button {
 	background-color: #28a745;

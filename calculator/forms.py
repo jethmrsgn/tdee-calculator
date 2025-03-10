@@ -11,7 +11,10 @@ ACTIVITY_LEVEL = (
 class CalculatorTdee(forms.Form):
 	gender = forms.ChoiceField(widget=forms.RadioSelect,
 							choices=[('Male','Male'),('Female','Female')],)
-	age = forms.IntegerField()
-	weight = forms.FloatField()
-	height = forms.FloatField()
+	age = forms.IntegerField(min_value=0,widget=forms.NumberInput(
+		attrs={'step':'any'}))
+	weight = forms.FloatField(min_value=0,widget=forms.NumberInput(
+		attrs={'placeholder':'kg','step':'any'}))
+	height = forms.FloatField(min_value=0,widget=forms.NumberInput(
+		attrs={'placeholder':'cm','step':'any'}))
 	activity_level = forms.ChoiceField(choices=ACTIVITY_LEVEL)

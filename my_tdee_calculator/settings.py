@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'calculator',
+    'calculator.apps.CalculatorConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -120,8 +120,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIR = [
-    BASE_DIR / 'static'
+STATICFILES_DIRS = [
+   BASE_DIR / 'static'
 ]
 
 # Default primary key field type

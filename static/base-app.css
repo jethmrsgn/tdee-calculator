@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
+
+
+html {
+  font-family: 'Open Sans', 'Lato', sans-serif;
+}
+
+body {
+	margin: 0;
+  display: flex;
+  justify-content: center;
+
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+}
+
+#main-navigation {
+  width: 90%;
+  height: 10%;
+  padding: 0 10%;
+  position: absolute;
+  background-color: #164c34;
+}
+
+#main-navigation a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+
+#main-navigation h1 a:hover,
+#main-navigation h1 a:active {
+  color: white;
+}
