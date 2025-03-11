@@ -2,7 +2,9 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from .forms import CalculatorTdee
 
-# Create your views here.
+from math import ceil
+
+# Business functionalities.
 def calculate_tdee(gender:str, age:int, weight:float, height:float, activity_level:str, body_fat:float):
 	"""
     Calculate the Total Daily Energy Expenditure (TDEE) based on the Mifflin-St Jeor Equation.
@@ -22,22 +24,59 @@ def calculate_tdee(gender:str, age:int, weight:float, height:float, activity_lev
 	tdee = ((10 * weight + 6.25 * height - 5 * age) + (5 if gender == 'male' else -151)) * float(activity_level)
 	return tdee
 
+def calculate_macros(maintenance_calories):
+    """Calculate macronutrients base on carb plan"""
+    calorie_adjustment = {
+		'maintenance': 0,
+        'cutting': -500,
+        'bulking': 500
+	}
+    macro_ratios = {
+        "moderate_carb": (0.30, 0.35, 0.35),
+        "lower_carb": (0.40, 0.40, 0.20),
+        "higher_carb": (0.30, 0.20, 0.50),
+    }
 
+    calories_per_gram = {"protein": 4, "fats": 9, "carbs": 4}
+
+    results = {}
+
+    for adjustment_type, adjustment in calorie_adjustment.items():
+        calories = maintenance_calories + adjustment
+        results[adjustment_type] = {}
+        for plan, (protein_ratio, fat_ratio, carb_ratio) in macro_ratios.items():
+            protein_calories = calories * protein_ratio
+            fat_calories = calories * fat_ratio
+            carb_calories = calories * carb_ratio
+
+            protein_grams = protein_calories / calories_per_gram["protein"]
+            fat_grams = fat_calories / calories_per_gram["fats"]
+            carb_grams = carb_calories / calories_per_gram["carbs"]
+
+            results[adjustment_type][plan] = {
+				"calories": ceil(calories),
+				"protein": round(protein_grams, 2),
+				"fats": round(fat_grams, 2),
+				"carbs": round(carb_grams, 2),
+			}
+    return results
+
+# Views here
 def index(request):
 	""" Handle the TDEE calculator form submission and render the index page."""
 
 	if request.method == 'POST':
 		form = CalculatorTdee(request.POST)
 		if form.is_valid():
-			gender = form.cleaned_data['gender']
+			gender = form.cleaned_data['gender'].lower()
 			age = form.cleaned_data['age']
 			weight = form.cleaned_data['weight']
 			height = form.cleaned_data['height']
 			activity_level = form.cleaned_data['activity_level']
 			tdee = calculate_tdee(gender=gender,age=age,weight=weight,height=height,activity_level=activity_level,body_fat=None)
-			messages.success(request,tdee)
+			request.session['tdee'] = ceil(tdee)
+			messages.success(request, f'Your TDEE is {tdee} kcal/day')
 			return redirect('result')
-		# render(request,'calculator/index.html',{'tdee':tdee})
 	else:
 		form = CalculatorTdee()
 
@@ -45,4 +84,10 @@ def index(request):
 	return render(request,'calculator/index.html', context)
 
 def result(request):
-	return render(request,'calculator/result.html')
+	""" Handles the visualization of the result of TDEE and macronutrients"""
+	tdee = request.session.pop('tdee',0)
+	macros = calculate_macros(tdee)
+	return render(request,'calculator/result.html',{
+		'tdee':tdee,
+		'macros':macros
+	})
