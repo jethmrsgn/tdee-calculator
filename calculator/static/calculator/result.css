@@ -1,0 +1,66 @@
+.row {
+	background: white;
+	padding: 15px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	margin-top: 100px;
+	width: auto;
+}
+p {
+	text-align: center;
+}
+.col-1 {
+	margin: 10px;
+}
+#tdee-cals {
+	background: #fdf6e5;
+	color: #333;
+	position: relative;
+	width: 100%;
+	border-radius: 20px;
+	text-align: center;
+	border: "1px solid #ede7bb";
+}
+.col-2 {
+	margin: 10px;
+}
+.tabs {
+	display: flex;
+	justify-content: space-around;
+}
+.tab {
+	padding: 10px 15px;
+	background-color: #ddd;
+	border-radius: 2px;
+	text-transform: capitalize;
+}
+.content {
+	margin-top: 20px;
+}
+.macros {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+}
+.macro-card {
+	background-color: #f8f1dc;
+	padding: 10px;
+	border-radius: 10px;
+	text-align: center;
+	width: 200px;
+	text-transform: capitalize;
+}
+.macro-header {
+	background-color: #3b75b6;
+	color: white;
+	padding: 5px;
+	border-radius: 5px;
+	font-weight: bold;
+}
+.macro-value {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-bottom: 0px;
+
+}

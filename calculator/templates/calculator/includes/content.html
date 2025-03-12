@@ -1,0 +1,35 @@
+<div class="tabs">
+	<div class="tab">{{type}}</div>
+</div>
+<div class="content">
+	<div class="tab-content">
+		{% if type == "maintenance" %}
+		<p>These macronutrient values reflect your maintenance calories of <strong>{{tdee}}</strong> calories per day.</p>
+		{% elif type == "cutting" %}
+		<p>These macronutrient values reflect your cutting calories of <strong>{{macro.moderate_carb.calories}}</strong> calories per day, which is a 500 calorie per day deficit from your maintenance of <strong>{{tdee}}</strong> calories per day.</p>
+		{% elif type == "bulking" %}
+		<p>These macronutrient values reflect your bulking calories of <strong>{{macro.moderate_carb.calories}}</strong> calories per day, which is +500 calories per day from your maintenance of <strong>{{tdee}}</strong> calories per day.</p>
+		{% endif %}
+		<div class="macros">
+			<div class="macro-card">
+				<div class="macro-header">Moderate Carb <hr> (30/35/35)</div>
+				<p class="macro-value">{{macro.moderate_carb.protein}}g</p><small>protein</small>
+				<p class="macro-value">{{macro.moderate_carb.fats}}g</p><small>fats</small>
+				<p class="macro-value">{{macro.moderate_carb.carbs}}g</p><small>carbs</small>
+			</div>
+			<div class="macro-card">
+				<div class="macro-header">Lower Carb <hr>(40/40/20)</div>
+				<p class="macro-value">{{macro.lower_carb.protein}}g</p><small>protein</small>
+				<p class="macro-value">{{macro.lower_carb.fats}}g</p><small>fats</small>
+				<p class="macro-value">{{macro.lower_carb.carbs}}g</p><small>carbs</small>
+			</div>
+			<div class="macro-card">
+				<div class="macro-header">Higher Carb<hr> (30/20/50)</div>
+				<p class="macro-value">{{macro.higher_carb.protein}}g</p><small>protein</small>
+				<p class="macro-value">{{macro.higher_carb.fats}}g</p><small>fats</small>
+				<p class="macro-value">{{macro.higher_carb.carbs}}g</p><small>carbs</small>
+			</div>
+		</div>
+	</div>
+	<div class="content">
+</div>
