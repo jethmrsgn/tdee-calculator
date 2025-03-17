@@ -7,22 +7,17 @@
 
 {% block content %}
 <div class="row">
-	<div class="col-1" style="padding-left:0;">
-		<p>Your Maintenance Calories</p>
-		<div id="tdee-cals">
-			<div style="padding-top:20px;">
-				<span class="h2"><h1>{{tdee}}</h1></span>
-				<hr>
-				<span class="cals">calories per day</span>
-			</div>
+	<div class="container d-flex justify-content-center align-items-center">
+		<div class="calories-box">
+			<h6 class="text-center fw-bold">Your Maintenance Calories</h6>
+			<div class="calories-value">{{tdee}}</div>
+			<div class="calories-label">calories per day</div>
 		</div>
 	</div>
-	<div class="col-2" style="padding-right:0;">
+	<div class="container" style="padding-right:0;">
 		<h2>Macronutrients</h2>
-		{% for type, macro in macros.items %}
 			{% include "calculator/includes/content.html" %}
-		{% endfor %}
-			<p class="mt-3 text-center">There are 4 calories per gram of both protein and carbohydrates, and 9 calories per gram of fats.</p>
+			<p class="mt-3">There are 4 calories per gram of both protein and carbohydrates, and 9 calories per gram of fats.</p>
 		</div>
 	</div>
 	</div>
