@@ -40,9 +40,6 @@ button {
 button:hover {
 	background-color: #218838;
 }
-#id_gender {
-    display: flex;
-    gap: 15px; /* Space between radio buttons */
-    align-items: center;
-	justify-content: space-evenly;
+.form-check {
+	display: flex;
 }

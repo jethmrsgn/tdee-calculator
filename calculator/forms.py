@@ -9,12 +9,13 @@ ACTIVITY_LEVEL = (
 )
 
 class CalculatorTdee(forms.Form):
-	gender = forms.ChoiceField(widget=forms.RadioSelect,
-							choices=[('Male','Male'),('Female','Female')],)
+	"""Form creator for the calculator of TDEE"""
+	gender = forms.ChoiceField(widget=forms.RadioSelect(attrs={'class':'mb-3'}),
+							choices=[('Male','Male'),('Female','Female')])
 	age = forms.IntegerField(min_value=0,widget=forms.NumberInput(
-		attrs={'step':'any'}))
+		attrs={'class':'mb-3','step':'any'}))
 	weight = forms.FloatField(min_value=0,widget=forms.NumberInput(
-		attrs={'placeholder':'kg','step':'any'}))
+		attrs={'class':'mb-3','placeholder':'kg','step':'any'}))
 	height = forms.FloatField(min_value=0,widget=forms.NumberInput(
-		attrs={'placeholder':'cm','step':'any'}))
-	activity_level = forms.ChoiceField(choices=ACTIVITY_LEVEL)
+		attrs={'class':'mb-3','placeholder':'cm','step':'any'}))
+	activity_level = forms.ChoiceField(choices=ACTIVITY_LEVEL,widget=forms.Select(attrs={'class':'mb-3',}))

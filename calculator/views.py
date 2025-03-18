@@ -83,11 +83,15 @@ def index(request):
 	context = {'form': form}
 	return render(request,'calculator/index.html', context)
 
-def result(request):
+def result(request,plan='maintenance',current_tdee=0):
 	""" Handles the visualization of the result of TDEE and macronutrients"""
 	tdee = request.session.pop('tdee',0)
-	macros = calculate_macros(tdee)
+	final_tdee = tdee if current_tdee is None or current_tdee == 0 else current_tdee
+	macros = calculate_macros(final_tdee)
+	selected_macros = macros[plan]
 	return render(request,'calculator/result.html',{
-		'tdee':tdee,
-		'macros':macros
+		'tdee':final_tdee,
+		'macros':selected_macros,
+		'active_tab':plan
 	})
+

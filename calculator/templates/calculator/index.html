@@ -6,13 +6,15 @@
 {% endblock  %}
 
 {% block content %}
-    <div class="container">
-        <h2>TDEE Calculator</h2>
+    <div class="container mt-5">
+        <div class="card p-4 shadow-lg">
+        <h2 class="text-center mb-4">TDEE Calculator</h2>
         <form action = {% url "index" %} method= "post">
             {% csrf_token %}
             {{form}}
 
             <button type="submit">Calculate TDEE</button>
         </form>
+        </div>
     </div>
 {% endblock  %}

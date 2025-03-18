@@ -1,40 +1,66 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@400;700&display=swap');
-
-
-html {
-  font-family: 'Open Sans', 'Lato', sans-serif;
-}
-
+/* General Styles */
 body {
-	margin: 0;
-  display: flex;
-  justify-content: center;
-
+  background-color: #f8f9fa; /* Light gray background */
+  font-family: Arial, sans-serif;
 }
 
-h1,
-h2,
-h3 {
-  font-family: 'Lato', sans-serif;
-  font-weight: bold;
-}
-
-#main-navigation {
-  width: 90%;
-  height: 10%;
-  padding: 0 10%;
-  position: absolute;
+/* Header */
+header {
   background-color: #164c34;
+  padding: 15px;
 }
 
-#main-navigation a {
-  text-decoration: none;
+header h1 a {
   color: white;
+  text-decoration: none;
   font-weight: bold;
 }
 
+/* Card Styling */
+.card {
+  max-width: 500px;
+  margin: auto;
+  border-radius: 10px;
+  border: none;
+  background: white;
+}
 
-#main-navigation h1 a:hover,
-#main-navigation h1 a:active {
-  color: white;
+.card h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #164c34;
+}
+
+/* Form Styling */
+.form-label {
+  font-weight: bold;
+}
+
+.form-control,
+.form-select {
+  border-radius: 8px;
+}
+
+.form-check-input {
+  margin-right: 8px;
+}
+
+/* Button */
+.btn-primary {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+  .card {
+      padding: 15px;
+  }
 }
