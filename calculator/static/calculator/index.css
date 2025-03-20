@@ -43,3 +43,7 @@ button:hover {
 .form-check {
 	display: flex;
 }
+#username::placeholder {
+	font-size: 12px; /* Adjust size */
+	color: #6c757d; /* Optional: Make it slightly lighter */
+}

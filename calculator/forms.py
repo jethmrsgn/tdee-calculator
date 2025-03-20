@@ -19,3 +19,6 @@ class CalculatorTdee(forms.Form):
 	height = forms.FloatField(min_value=0,widget=forms.NumberInput(
 		attrs={'class':'mb-3','placeholder':'cm','step':'any'}))
 	activity_level = forms.ChoiceField(choices=ACTIVITY_LEVEL,widget=forms.Select(attrs={'class':'mb-3',}))
+	user = forms.CharField(max_length=50,required=False, widget=forms.TextInput(
+		attrs={'id':'username','placeholder':'Entering a username will save your result.(Optional)'}
+	))

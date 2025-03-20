@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block javascript %}
+<script src = {% static "function.js" %}></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+			{% if showPopup %}
+            var myModal = new bootstrap.Modal(document.getElementById('myPopup'));
+            myModal.show();
+			{% endif %}
+    });
+</script>
+{% endblock javascript %}
+
+{% block css_files %}{% endblock css_files %}
+
+{% block content %}
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="myPopup" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Retrieve User History</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+				{% if message %}
+				<div class="alert alert-danger d-flex align-items-center" role="alert">
+					<i class="bi bi-exclamation-triangle-fill me-2"></i>
+					<span>{{message}}</span>
+				</div>
+				{% endif %}
+                <form method="post">
+                    {% csrf_token %}
+					{{form}}
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+	{% include "history/includes/history-table.html" %}
+</div>
+
+{% endblock content %}
+

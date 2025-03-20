@@ -1,0 +1,45 @@
+<h3 class="mt-4">Hi {{username}} !</h3>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Last Updated</th>
+				<th>Age</th>
+				<th>Height (cm)</th>
+				<th>Weight (kg)</th>
+				<th>Activity Level</th>
+				<th>Macros</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% if show_history %}
+			{% for record in user %}
+			<tr>
+				<td>{{record.updated}}</td>
+				<td>{{record.age}}</td>
+				<td>{{record.height}}</td>
+				<td>{{record.weight}}</td>
+				<td>{{record.activity_level.description}}</td>
+				<td><a href="#" data-bs-toggle="modal" data-bs-target="#macrosModal" onclick="updateMacros('{{record.macros}}')">View</a></td>
+			</tr>
+			{% endfor %}
+			{% endif %}
+		</tbody>
+	</table>
+
+	<div class="modal fade" id="macrosModal" tabindex="-1" aria-labelledby="macrosModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="macrosModalLabel">Macros Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="macrosContent">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+

@@ -12,9 +12,9 @@
         <form action = {% url "index" %} method= "post">
             {% csrf_token %}
             {{form}}
-
             <button type="submit">Calculate TDEE</button>
         </form>
+        <p>Returning user? Access your history <a href="{% url "history-dashboard" %}">here!</a> </p>
         </div>
     </div>
 {% endblock  %}

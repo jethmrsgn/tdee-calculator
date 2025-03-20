@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from .forms import CalculatorTdee
+from history.models import UserHistory,ActivityLevel
+import json
 
 from math import ceil
 
@@ -68,6 +70,7 @@ def index(request):
 	if request.method == 'POST':
 		form = CalculatorTdee(request.POST)
 		if form.is_valid():
+			username= form.cleaned_data['user']
 			gender = form.cleaned_data['gender'].lower()
 			age = form.cleaned_data['age']
 			weight = form.cleaned_data['weight']
@@ -76,6 +79,22 @@ def index(request):
 			tdee = calculate_tdee(gender=gender,age=age,weight=weight,height=height,activity_level=activity_level,body_fat=None)
 			request.session['tdee'] = ceil(tdee)
 			messages.success(request, f'Your TDEE is {tdee} kcal/day')
+
+			if not (username == ""):
+
+				macros_in_json = json.dumps(calculate_macros(ceil(tdee)))
+
+				UserHistory.objects.create(
+					user = username,
+					gender = gender,
+					age = age,
+					weight = weight,
+					height = height,
+					activity_level = ActivityLevel.objects.get(value=activity_level),
+					macros = macros_in_json
+				)
+
+
 			return redirect('result')
 	else:
 		form = CalculatorTdee()

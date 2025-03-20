@@ -1,5 +1,5 @@
 {% load static bootstrap5 %}
-
+{% bootstrap_javascript %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,13 +10,14 @@
 	<link rel="stylesheet" href="{% static "base-app.css" %}"/>
 
 	{% block css_files %}{% endblock css_files %}
-
+	{% block javascript %}{% endblock javascript %}
 </head>
 <body>
 	<header class="text-white text-start py-3">
 		<h1><a class="text-white text-decoration-none" href={% url "index" %}>TDEE</a></h1>
 	</header>
 
-	{% block content %}{% endblock  %}
+	{% block content %}{% endblock content %}
+
 </body>
 </html>
