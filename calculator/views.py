@@ -71,18 +71,29 @@ def index(request):
 		form = CalculatorTdee(request.POST)
 		if form.is_valid():
 			username= form.cleaned_data['user']
-			gender = form.cleaned_data['gender'].lower()
+			gender = form.cleaned_data['gender']
 			age = form.cleaned_data['age']
 			weight = form.cleaned_data['weight']
 			height = form.cleaned_data['height']
 			activity_level = form.cleaned_data['activity_level']
 			tdee = calculate_tdee(gender=gender,age=age,weight=weight,height=height,activity_level=activity_level,body_fat=None)
+
+			initial_form = {
+				'gender':gender,
+				'age':age,
+				'weight':weight,
+				'height':height,
+				'activity_level':activity_level
+			}
 			request.session['tdee'] = ceil(tdee)
+			request.session['initial_form']= json.dumps(initial_form)
+
 			messages.success(request, f'Your TDEE is {tdee} kcal/day')
+			macros = calculate_macros(ceil(tdee))
 
 			if not (username == ""):
 
-				macros_in_json = json.dumps(calculate_macros(ceil(tdee)))
+				macros_in_json = json.dumps(macros)
 
 				UserHistory.objects.create(
 					user = username,
@@ -93,9 +104,14 @@ def index(request):
 					activity_level = ActivityLevel.objects.get(value=activity_level),
 					macros = macros_in_json
 				)
-
-
-			return redirect('result')
+			selected_macros = macros['maintenance']
+			context = {
+				'form': form,
+				'tdee':ceil(tdee),
+				'macros':selected_macros,
+				'active_tab':'maintenance'
+				}
+			return render(request,'calculator/index.html', context)
 	else:
 		form = CalculatorTdee()
 
@@ -105,12 +121,20 @@ def index(request):
 def result(request,plan='maintenance',current_tdee=0):
 	""" Handles the visualization of the result of TDEE and macronutrients"""
 	tdee = request.session.pop('tdee',0)
+	initial_dict = json.loads(request.session.pop('initial_form'))
+
 	final_tdee = tdee if current_tdee is None or current_tdee == 0 else current_tdee
 	macros = calculate_macros(final_tdee)
 	selected_macros = macros[plan]
-	return render(request,'calculator/result.html',{
+	form = CalculatorTdee(initial= initial_dict)
+
+	request.session['initial_form']= json.dumps(initial_dict)	
+	print(initial_dict)
+
+	return render(request,'calculator/index.html',{
 		'tdee':final_tdee,
 		'macros':selected_macros,
-		'active_tab':plan
+		'active_tab':plan,
+		'form': form
 	})
 

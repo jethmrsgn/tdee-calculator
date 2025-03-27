@@ -6,12 +6,7 @@ This project calculates your Total Daily Energy Expenditure using the Mifflin-St
 This includes the feature of
 - Calculator for the TDEE
 - Result representation of TDEE and the Macronutrients you need base on your goal
-
-### Current Feature
-- Calculator
-
-### Current Development
-- Result Representation
+- User can save the result and search it using their saved userId
 
 ## Prerequisites
 - Python: Make sure Python 3.8+ is installed. You can download it from python.org.

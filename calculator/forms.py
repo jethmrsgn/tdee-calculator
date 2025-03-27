@@ -10,7 +10,8 @@ ACTIVITY_LEVEL = (
 
 class CalculatorTdee(forms.Form):
 	"""Form creator for the calculator of TDEE"""
-	gender = forms.ChoiceField(widget=forms.RadioSelect(attrs={'class':'mb-3'}),
+
+	gender = forms.ChoiceField(widget=forms.Select(attrs={'class':'mb-3','id':'gender_form'}),
 							choices=[('Male','Male'),('Female','Female')])
 	age = forms.IntegerField(min_value=0,widget=forms.NumberInput(
 		attrs={'class':'mb-3','step':'any'}))

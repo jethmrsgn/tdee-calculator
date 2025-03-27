@@ -3,7 +3,7 @@
 	padding: 15px;
 	border-radius: 10px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	width:400px;
+	width:45%;
 	text-align: center;
 	margin-top: 100px;
 }
@@ -46,4 +46,65 @@ button:hover {
 #username::placeholder {
 	font-size: 12px; /* Adjust size */
 	color: #6c757d; /* Optional: Make it slightly lighter */
+}
+.row {
+
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.calories-box {
+	background-color: #fdf6e3; /* Light yellow background */
+	padding: 30px;
+	border-radius: 30px;
+	text-align: center;
+	margin: 15px;
+}
+.calories-value {
+	font-size: 36px;
+	font-weight: bold;
+	color: #2c3e50; /* Dark text */
+}
+.calories-label {
+	font-size: 14px;
+	color: #555;
+}
+.macro-card {
+	background: #fdf7e9;
+	border-radius: 10px;
+	padding: 20px;
+	text-align: center;
+	min-width: 200px;
+}
+.macro-card h5 {
+	font-size: 20px;
+	font-weight: bold;
+}
+.macro-card span {
+	font-size: 14px;
+	color: #6c757d;
+}
+.macro-badge {
+	background: #3a79b8;
+	color: white;
+	font-size: 12px;
+	padding: 5px 10px;
+	border-radius: 5px;
+	display: inline-block;
+	margin-bottom: 10px;
+}
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+	flex-wrap: nowrap;
+}
+
+#gender_form{
+	display: flex;
+	justify-content: center;
 }
